@@ -24,10 +24,12 @@ export default function TextForm(props) {
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
       }).join(' ');
       setText(newText);
+      props.showAlert('First Letter of every word is now Capital','success');
     }
     const handleExtraSpace = () =>{
       let newText=text.split(/[ ]+/);
-      setText(newText.join(" "))
+      setText(newText.join(" "));
+      props.showAlert('Extra space has been removed','success');
     }
     const copyText =() =>{
       var text=document.getElementById("myBox");

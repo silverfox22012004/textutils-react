@@ -76,11 +76,13 @@ import './App.css'; // Import your existing CSS file
 function App() {
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
-
-  const showAlert = (message, type) => {
+  
+    document.title = 'TextUrWay - Aditya'; 
+  
+  function showAlert(message, type) {
     setAlert({ msg: message, type: type });
-    setTimeout(() => setAlert(null), 1000);
-  };
+    setTimeout(() => setAlert(null), 4000);
+  }
 
   const toggleMode = () => {
     if (mode === 'light') {
@@ -88,19 +90,19 @@ function App() {
       document.body.style.backgroundColor = '#343a40';
       document.body.style.color = 'white';
       showAlert('Dark Mode Has Been Enabled', 'success');
-      document.title = 'TextUtils - Dark Mode';
+      document.title = 'TextUrWay -Aditya- Dark Mode';
     } else {
       setMode('light');
       document.body.style.backgroundColor = 'white';
       document.body.style.color = '#343a40';
       showAlert('Light Mode Has Been Enabled', 'success');
-      document.title = 'TextUtils - Light Mode';
+      document.title = 'TextUrWay-Aditya';
     }
   };
 
   return (
     <Router>
-      <Navbar title="TextUtils" aboutText="About" mode={mode} toggleMode={toggleMode} />
+      <Navbar title="TextUrWay" aboutText="About" mode={mode} toggleMode={toggleMode} />
       <Alert alert={alert} />
       <div className="container my-3">
         <Routes>
