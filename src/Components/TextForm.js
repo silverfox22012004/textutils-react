@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
-
+//import Sanscript from "sanscript";
+//import translate from "google-translate-api-browser";
 export default function TextForm(props) {
     const[text,setText]=useState('');
     //text ="new text";wrong way to update text
@@ -26,6 +27,60 @@ export default function TextForm(props) {
       setText(newText);
       props.showAlert('First Letter of every word is now Capital','success');
     }
+    const handleTranslation = async () => {
+      if (text.trim() === "") {
+        props.showAlert("Please enter text to translate", "warning");
+        return;
+      }
+    
+      let apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|hi`;
+    
+      try {
+        let response = await fetch(apiUrl);
+        let data = await response.json();
+        if (data.responseData.translatedText) {
+          setText(data.responseData.translatedText);
+          props.showAlert("Text translated to Hindi", "success");
+        } else {
+          props.showAlert("Translation failed. Try again later", "danger");
+        }
+      } catch (error) {
+        console.error("Error translating text:", error);
+        props.showAlert("Error translating text", "danger");
+      }
+    };
+    
+    
+
+const handleTransliteration = async () => {
+  if (text.trim() === "") {
+    props.showAlert("Please enter text to transliterate", "warning");
+    return;
+  }
+
+  let apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|hi`;
+
+  try {
+    let response = await fetch(apiUrl);
+    let data = await response.json();
+
+    if (data.responseData && data.responseData.translatedText) {
+      setText(data.responseData.translatedText);
+      props.showAlert("Text transliterated to Hindi", "success");
+    } else {
+      props.showAlert("Transliteration failed", "danger");
+    }
+  } catch (error) {
+    console.error("Error transliterating text:", error);
+    props.showAlert("Error in transliteration", "danger");
+  }
+};
+
+
+    
+
+
+    
     const handleExtraSpace = () =>{
       let newText=text.split(/[ ]+/);
       setText(newText.join(" "));
@@ -43,6 +98,7 @@ export default function TextForm(props) {
         console.log("On change");
         setText(event.target.value)
     }
+    
      
     
   return (
@@ -69,7 +125,9 @@ export default function TextForm(props) {
           <button id="button-primary" onClick={handleGrammar}>First Letter Capital</button>
           <button id="button-primary" onClick={copyText}>Copy Text</button>
           <button id="button-primary" onClick={handleExtraSpace}>Remove Extra Space</button>
-          <button id="button-primary" onClick={handleClearText}>Clear Text</button> 
+          <button id="button-primary" onClick={handleClearText}>Clear Text</button>
+          <button id="button-primary" >Translate into Hindi <br />coming soon...</button>
+          <button id="button-primary">Translate to Devnagri Script <br />coming soon...</button> 
           </div>
         </div>
     <div className="conatiner2 my-3">

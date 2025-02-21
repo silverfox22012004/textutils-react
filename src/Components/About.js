@@ -68,7 +68,7 @@ export default function About() {
     <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
       <div className="accordion-body" style={myStyle2}><b>This webiste is created by <b>ADITYA CHAUHAN</b>  ,2nd year CSE Student. Here you can alter your text upto your requirement. <br /><i>We are working on our website and will provide better experience day by day</i></b></div>
     </div>
-    <a href="mailto:achauhan3_be23@thapar.edu & subject=Feedback for website Textutils">Send your feedback</a>
+    <a href="mailto:achauhan3_be23@thapar.edu">Send your feedback</a>
   </div>
   {/* <div className="accordion-item">
     <h2 className="accordion-header">
